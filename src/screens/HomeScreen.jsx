@@ -1,8 +1,10 @@
 
 import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { featuredItems } from "../data/menuItems";
+import { featuredItems, getItemsByCategory } from "../data/menuItems";
 import Card from "../components/Card";
+import { categories } from "../data/CategoryData";
+import CategoryCard from "../components/CategoryCard";
 
 
 export default function HomeScreen() {
@@ -24,7 +26,7 @@ export default function HomeScreen() {
             <View style={styles.section} >
                 <Text style={styles.sectionTitle} >Featured Items</Text>
 
-                <ScrollView  horizontal  style={ styles.featuredList }  >
+              <ScrollView  horizontal contentContainerStyle={{columnGap: 12,}} style={ styles.featuredList}  >
 
                     {featuredItems.map((item) => (
                         <View key={item.id} style={styles.feauturedCard}>
@@ -36,6 +38,15 @@ export default function HomeScreen() {
                 </ScrollView>
 
             </View>
+
+            <View style={styles.section}  >
+                <Text  style={styles.sectionTitle} >Categories</Text>
+                {categories.map((category) => {
+                    const itemCount = getItemsByCategory(category.id).length;
+                    return <CategoryCard key={category.id} itemCount={itemCount} {...category}/>
+                    
+                })};
+            </View>
         </ScrollView>
     )
 }
@@ -44,6 +55,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f8f8f8',
+        width: 200,
+       
+
     },
     header: {
         backgroundColor: '#007AFF',

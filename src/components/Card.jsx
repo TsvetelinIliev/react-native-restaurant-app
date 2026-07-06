@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 3,
         marginBottom: 12,
+        width: 200,
+        
+        
         
     },
     containerHorizontal: {
@@ -61,6 +64,8 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 12,
+       
+
         
     },
     contentHorizontal: {
