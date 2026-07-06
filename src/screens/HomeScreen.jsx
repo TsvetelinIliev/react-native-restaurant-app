@@ -5,11 +5,16 @@ import { View, Text, StyleSheet } from "react-native";
 export default function HomeScreen() {
 
     return (
+            <View style={styles.section} >
+                <Text style={styles.sectionTitle} >Featured Items</Text>
 
-          <View style={styles.container}>
-          <Text>Restaurant App</Text>
-          
-        </View>
+                <View style={styles.featuredList} >
+
+                    {featuredItems.map((item) => (
+                        <View key={item.id} >
+                            <Card {...item} />
+
+                        </View>
     )
 }
 
