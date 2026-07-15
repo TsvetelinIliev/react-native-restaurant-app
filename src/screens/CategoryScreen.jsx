@@ -2,17 +2,24 @@ import { Text, View, StyleSheet, ScrollView} from "react-native";
 import { getItemsByCategory } from "../data/menuItems";
 import Card from "../components/Card";
 
-export default function CategoryScreen({ route }) {
+export default function CategoryScreen({ route, navigation }) {
     const { categoryId } = route.params;
 
     const items = getItemsByCategory(categoryId);
+
+    const itemPressHandler = (itemId) => {
+        navigation.navigate('Details',{itemId})
+    }
 
     return (
 
         <ScrollView style={styles.container} >
             { items.map((item) => (
                     
-                <Card  key={item.id} {...item}/>
+                <Card  key={item.id} 
+                {...item}
+                onPress={itemPressHandler}
+                />
                 
             ))};
         </ScrollView>

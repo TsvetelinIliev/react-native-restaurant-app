@@ -1,23 +1,27 @@
-import { View, Text, StyleSheet, Image} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 
 
 export default function Card({
+    id,
     name,
     imageUrl,
     price,
     subtitle,
+    onPress,
 
 }) {
 
     return (
+        <TouchableOpacity onPress={() => onPress(id)} >
+
         <View style={[styles.container]}  >
 
             <Image
                 source={{ uri: imageUrl }}
                 style={styles.image}
                 resizeMode="cover"
-
-            />
+                
+                />
 
             <View style={styles.content} >
 
@@ -26,6 +30,7 @@ export default function Card({
                 <Text style={styles.price} >£{price}</Text>
             </View>
         </View>
+      </TouchableOpacity>
     );
 };
 

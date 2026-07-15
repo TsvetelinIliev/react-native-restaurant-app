@@ -3,6 +3,7 @@ import HomeScreen from "../screens/HomeScreen";
 import CartScreen from "../screens/CartScreen";
 import { View } from "react-native";
 import CategoryScreen from "../screens/CategoryScreen";
+import DetailsScreen from "../screens/DetailsScreen";
 
 
 export default function HomeNavigator() {
@@ -18,6 +19,8 @@ export default function HomeNavigator() {
            
             <Stack.Screen  name="Home" component={HomeScreen} />
             <Stack.Screen  name="Category" component={CategoryScreen} />
+            <Stack.Screen  name="Details" component={DetailsScreen} />
+
             
 
             
