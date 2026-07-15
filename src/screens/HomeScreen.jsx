@@ -53,7 +53,7 @@ export default function HomeScreen({navigation}) {
                     onPress={categoryPressHandler}
                     />
                     
-                })};
+                })}
             </View>
         </ScrollView>
     )
