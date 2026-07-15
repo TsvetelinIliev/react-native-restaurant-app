@@ -3,11 +3,16 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { featuredItems, getItemsByCategory } from "../data/menuItems";
 import Card from "../components/Card";
-import { categories } from "../data/CategoryData";
 import CategoryCard from "../components/CategoryCard";
+import { categories } from "../data/categoryData";
 
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
+
+    const categoryPressHandler = (categoryId) => {
+        navigation.navigate('Category', { categoryId });
+        navigation.Cat
+    }
 
     return (
 <ScrollView>
@@ -43,7 +48,10 @@ export default function HomeScreen() {
                 <Text  style={styles.sectionTitle} >Categories</Text>
                 {categories.map((category) => {
                     const itemCount = getItemsByCategory(category.id).length;
-                    return <CategoryCard key={category.id} itemCount={itemCount} {...category}/>
+                    return <CategoryCard key={category.id} itemCount={itemCount} 
+                    {...category}
+                    onPress={categoryPressHandler}
+                    />
                     
                 })};
             </View>

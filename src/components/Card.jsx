@@ -23,7 +23,7 @@ export default function Card({
 
                 <Text style={styles.title}  >{name}</Text>
                 {subtitle &&  <Text style={styles.subtitle} >{subtitle}</Text>}
-                <Text style={styles.price} >{price}</Text>
+                <Text style={styles.price} >£{price}</Text>
             </View>
         </View>
     );
