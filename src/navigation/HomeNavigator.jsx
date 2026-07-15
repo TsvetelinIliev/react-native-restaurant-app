@@ -11,7 +11,7 @@ export default function HomeNavigator() {
 
     return (
 
-        <Stack.Navigator screenOptions={{ headerShown: false }}  >
+        <Stack.Navigator >
 
             
 

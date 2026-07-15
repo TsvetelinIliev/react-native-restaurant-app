@@ -18,11 +18,11 @@ export default function RootNavigator() {
                     <Tabs.Screen
                         name="HomeTab"
                         component={HomeNavigator}
-                        // options={{
-                        //     title: "Home",
+                        options={{
+                        
                             
-                        //     headerShown: false
-                        // }}
+                            headerShown: false
+                        }}
                     />
             <Tabs.Screen name="Cart" component={CartScreen} />
             <Tabs.Screen name="Info" component={InfoScreen} />
