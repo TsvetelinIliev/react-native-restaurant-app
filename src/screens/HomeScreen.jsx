@@ -12,7 +12,11 @@ export default function HomeScreen({navigation}) {
     const categoryPressHandler = (categoryId) => {
         navigation.navigate('Category', { categoryId });
         navigation.Cat
-    }
+    };
+
+    const itemPressHandler =(itemId) => {
+        navigation.navigate('Details',{itemId});
+    };
 
     return (
 <ScrollView>
@@ -35,7 +39,9 @@ export default function HomeScreen({navigation}) {
 
                     {featuredItems.map((item) => (
                         <View key={item.id} style={styles.feauturedCard}>
-                            <Card {...item} />
+                            <Card {...item} 
+                            onPress={itemPressHandler}
+                            />
 
                         </View>
 

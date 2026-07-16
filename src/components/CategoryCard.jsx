@@ -17,7 +17,7 @@ export default function CategoryCard({
                 <Text style={styles.itemCount} >{itemCount} items</Text>
 
             </View>
-            <Text style={styles.arrow}>{">"}</Text>
+            <Text style={styles.arrow}>›</Text>
         </TouchableOpacity>
 
     )

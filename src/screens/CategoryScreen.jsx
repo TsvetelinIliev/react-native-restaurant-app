@@ -57,11 +57,13 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         paddingHorizontal: 16,
         borderRadius: 8,
+        
     },
     addButtonText: {
         color: '#fff',
         fontWeight: '600',
         fontSize: 14,
+        
     },
      image: {
         width: '100%',
