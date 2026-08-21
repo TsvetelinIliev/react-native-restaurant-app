@@ -51,7 +51,7 @@ export default function HomeScreen({navigation}) {
             </View>
 
             <View style={styles.section}  >
-                <Text  style={styles.sectionTitle} >Categories</Text>
+                <Text  style={styles.sectionTitle}>Categories</Text>
                 {categories.map((category) => {
                     const itemCount = getItemsByCategory(category.id).length;
                     return <CategoryCard key={category.id} itemCount={itemCount} 
