@@ -1,11 +1,11 @@
 
 import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { featuredItems, getItemsByCategory } from "../data/menuItems";
+import {  getItemsByCategory } from "../data/menuItems";
 import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
 import { useEffect, useState } from "react";
-import { categoryApi } from "../api";
+import { categoryApi, mealApi } from "../api";
 
 //import { categories } from "../data/categoryData";
 
@@ -13,6 +13,7 @@ import { categoryApi } from "../api";
 export default function HomeScreen({navigation}) {
 
     const [categories,setCategories] = useState([]);
+    const [featured,setFeatured] = useState([]);
 
     useEffect(() => {
         categoryApi.getAll()
@@ -25,6 +26,10 @@ export default function HomeScreen({navigation}) {
         .catch(err => {
             alert('Cannot load categories')
         });
+
+        mealApi.getFeatured()
+        .then(result => setFeatured(result.data))
+        .catch(err => alert('Cannot get featured'));
 
     },[]);
 
@@ -59,7 +64,7 @@ export default function HomeScreen({navigation}) {
 
               <ScrollView  horizontal contentContainerStyle={{columnGap: 12,}} style={ styles.featuredList}  >
 
-                    {featuredItems.map((item) => (
+                    {featured.map((item) => (
                         <View key={item.id} style={styles.feauturedCard}>
                             <Card {...item} 
                             onPress={itemPressHandler}
