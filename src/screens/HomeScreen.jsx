@@ -4,10 +4,32 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { featuredItems, getItemsByCategory } from "../data/menuItems";
 import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
-import { categories } from "../data/categoryData";
+import { useEffect, useState } from "react";
+import { categoryApi } from "../api";
+
+//import { categories } from "../data/categoryData";
 
 
 export default function HomeScreen({navigation}) {
+
+    const [categories,setCategories] = useState([]);
+
+    useEffect(() => {
+        categoryApi.getAll()
+        .then(result => {
+            
+            
+            setCategories(result.data);
+            
+        })
+        .catch(err => {
+            alert('Cannot load categories')
+        });
+
+    },[]);
+
+    
+
 
     const categoryPressHandler = (categoryId) => {
         navigation.navigate('Category', { categoryId });
@@ -23,9 +45,9 @@ export default function HomeScreen({navigation}) {
   <View style={styles.header}   >
                   <Text style={styles.restaurantName}>Tasty Bites</Text>
                   <View style={styles.headerInfo}>
-                      <Text style={styles.infoText}>⭐ 4.8 Rating</Text>
+                      <Text style={styles.infoText}>⭐4.8 Rating</Text>
                       <Text style={styles.infoDot}>•</Text>
-                      <Text style={styles.infoText}>🕐 25-35 min</Text>
+                      <Text style={styles.infoText}>🕐25-35 min</Text>
                   </View>
                   <Text style={styles.tagline}>Fresh & Delicious Food Delivered Fast</Text>
               </View>

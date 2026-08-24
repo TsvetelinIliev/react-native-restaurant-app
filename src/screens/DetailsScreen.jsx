@@ -30,12 +30,12 @@ export default function DetailsScreen({route,navigation}) {
 
                     <View>
                         <Text style={styles.qtySection} >Quantity</Text>
-                        <Text> - 1 + </Text>
+                        <Text>- 1 +</Text>
                     </View>
 
                     <View style={styles.footer} >
                         <View style={styles.priceContainer} >
-                            <Text style={styles.totalLabel} >Total: </Text>
+                            <Text style={styles.totalLabel} >Total:</Text>
                             <Text style={styles.totalPrice} >£{item.price.toFixed(2)}</Text>
                         </View>
                         <View style={styles.footerButtons} >
