@@ -35,13 +35,13 @@ export default function HomeScreen({navigation}) {
     //     .catch(err => alert('Cannot get featured'));
 
     useEffect(() => {
-        setRefreshing(true);
-
+        
         async function fetchData(){
+            setRefreshing(true);
             
             try {
 
-                const categoryResult = await mealApi.getAll();
+                const categoryResult = await categoryApi.getAll();
                 setCategories(categoryResult.data);
                 const featuredResult = await mealApi.getFeatured();
                 setFeatured(featuredResult.data)

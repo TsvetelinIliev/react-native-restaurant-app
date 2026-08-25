@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import HomeScreen from "../screens/HomeScreen";
-import CartScreen from "../screens/CartScreen";
 import { TouchableOpacity, View } from "react-native";
 import CategoryScreen from "../screens/CategoryScreen";
 import DetailsScreen from "../screens/DetailsScreen";
@@ -17,7 +16,7 @@ export default function HomeNavigator() {
             headerRight: () => {
 
                 return (
-                    <TouchableOpacity  onPress={() => navigation.navigate('Cart')} >
+                    <TouchableOpacity  onPress={() => navigation.navigate('CartModal')} >
 
                         <Ionicons name="cart" size={24} color="black" style={{marginRight: 15 }}/>
 
@@ -32,6 +31,7 @@ export default function HomeNavigator() {
             <Stack.Screen  name="Home" component={HomeScreen} />
             <Stack.Screen  name="Category" component={CategoryScreen} />
             <Stack.Screen  name="Details" component={DetailsScreen} />
+            
 
             
 
