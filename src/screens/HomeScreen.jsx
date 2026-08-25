@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
 import { useEffect, useState } from "react";
 import { categoryApi, mealApi } from "../api";
+import { RefreshControl } from "react-native";
 
 //import { categories } from "../data/categoryData";
 
@@ -14,24 +15,52 @@ export default function HomeScreen({navigation}) {
 
     const [categories,setCategories] = useState([]);
     const [featured,setFeatured] = useState([]);
+    const [toggleRefresh,setToggleRefresh] = useState(false);
+    const[refreshing,setRefreshing] = useState(true);
+
+    // useEffect(() => {
+    //     categoryApi.getAll()
+    //     .then(result => {
+            
+            
+    //         setCategories(result.data);
+            
+    //     })
+    //     .catch(err => {
+    //         alert('Cannot load categories')
+    //     });
+
+    //     mealApi.getFeatured()
+    //     .then(result => setFeatured(result.data))
+    //     .catch(err => alert('Cannot get featured'));
 
     useEffect(() => {
-        categoryApi.getAll()
-        .then(result => {
-            
-            
-            setCategories(result.data);
-            
-        })
-        .catch(err => {
-            alert('Cannot load categories')
-        });
+        setRefreshing(true);
 
-        mealApi.getFeatured()
-        .then(result => setFeatured(result.data))
-        .catch(err => alert('Cannot get featured'));
+        async function fetchData(){
+            
+            try {
 
-    },[]);
+                const categoryResult = await mealApi.getAll();
+                setCategories(categoryResult.data);
+                const featuredResult = await mealApi.getFeatured();
+                setFeatured(featuredResult.data)
+                
+            } catch (err) {
+
+                alert('Cannot load data!');
+                
+            }finally {
+                setRefreshing(false);
+            }
+
+           
+            
+        }
+
+        fetchData();
+
+    },[toggleRefresh]);
 
     
 
@@ -45,8 +74,16 @@ export default function HomeScreen({navigation}) {
         navigation.navigate('Details',{itemId});
     };
 
+    const refreshHandler = () => {
+        setFeatured(state => !state);
+    }
+
     return (
-<ScrollView>
+<ScrollView 
+   refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refreshHandler} />}
+   
+
+   >
   <View style={styles.header}   >
                   <Text style={styles.restaurantName}>Tasty Bites</Text>
                   <View style={styles.headerInfo}>
