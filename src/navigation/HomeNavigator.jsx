@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import HomeScreen from "../screens/HomeScreen";
 import CartScreen from "../screens/CartScreen";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import CategoryScreen from "../screens/CategoryScreen";
 import DetailsScreen from "../screens/DetailsScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 
 export default function HomeNavigator() {
@@ -12,7 +13,18 @@ export default function HomeNavigator() {
 
     return (
 
-        <Stack.Navigator >
+        <Stack.Navigator screenOptions={({navigation}) => ({
+            headerRight: () => {
+
+                return (
+                    <TouchableOpacity  onPress={() => navigation.navigate('Cart')} >
+
+                        <Ionicons name="cart" size={24} color="black" style={{marginRight: 15 }}/>
+
+                    </TouchableOpacity>
+                )
+            }
+        })} >
 
             
 
