@@ -1,9 +1,12 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getItemById } from "../data/menuItems";
 import Button from "../components/Button";
-
+import QuantityStepper from "../components/QuantityStepper";
+import {useState} from "react";
 
 export default function DetailsScreen({route,navigation}) {
+
+    const [quantity,setQuantity] = useState(1);
 
     const {itemId} = route.params;
 
@@ -30,7 +33,12 @@ export default function DetailsScreen({route,navigation}) {
 
                     <View>
                         <Text style={styles.qtySection} >Quantity</Text>
-                        <Text>- 1 +</Text>
+                        <QuantityStepper 
+                        qty={quantity}
+                        onIncrement={() => setQuantity(quantity + 1)}
+                        onDecrement={() => setQuantity(quantity - 1)}
+                        
+                        />
                     </View>
 
                     <View style={styles.footer} >
