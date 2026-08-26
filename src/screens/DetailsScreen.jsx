@@ -48,7 +48,7 @@ export default function DetailsScreen({route,navigation}) {
                         title="View Card"
                         variant="outline"
                         style={styles.viewCartButton}
-                        onPress={() => navigation.navigate('Cart')}
+                        onPress={() => navigation.navigate('CartModal')}
                         />
                         </View>
 
