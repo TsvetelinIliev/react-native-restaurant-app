@@ -7,6 +7,7 @@ export const CartContext = createContext({
     addToCart(meal,quantity) {},
     decreaseQuantity(index) {},
     increaseQuantity(index) {},
+    removeItem(index) {},
 
 });
 
