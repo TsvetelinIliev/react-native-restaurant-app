@@ -6,6 +6,8 @@ export default function RootNavigator() {
 
     const Stack = createNativeStackNavigator();
 
+    
+
     return(
 
         <Stack.Navigator screenOptions={{ headerShown: false }} >

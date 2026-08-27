@@ -3,13 +3,16 @@ import { getItemById } from "../data/menuItems";
 import Button from "../components/Button";
 import QuantityStepper from "../components/QuantityStepper";
 import {useState,useEffect} from "react";
-import   {mealApi}  from "../api";
+import {mealApi}  from "../api";
+import { useCartContext } from "../contexts/cart/CartContext";
 
 export default function DetailsScreen({route,navigation}) {
 
     const [quantity,setQuantity] = useState(1);
 
     const [meal,setMeal] = useState({});
+
+    const {addToCart} = useCartContext();
 
     const {itemId} = route.params;
 
@@ -27,7 +30,17 @@ export default function DetailsScreen({route,navigation}) {
         })
 
         
-    },[itemId])
+    },[itemId]);
+
+    const addToCartHandler = () => {
+        addToCart(meal,quantity);
+
+        setQuantity(1);
+        alert('Item added to card!');
+
+    }
+
+    
 
     return (
         <View style={styles.container}  >
@@ -53,7 +66,7 @@ export default function DetailsScreen({route,navigation}) {
                         <QuantityStepper 
                         qty={quantity}
                         onIncrement={() => setQuantity(quantity + 1)}
-                        onDecrement={() => setQuantity(quantity - 1)}
+                        onDecrement={() => setQuantity(q => Math.max(0) )}
                         
                         />
                     </View>
@@ -67,6 +80,7 @@ export default function DetailsScreen({route,navigation}) {
                         <Button 
                         title="Add to Card"
                         style={styles.addButton}
+                        onPress={addToCartHandler}
                         
                         />
                         <Button 
