@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import CartItem from "../components/CartItem";
 import { useCartContext } from "../contexts/cart/CartContext"
 import { FlatList } from "react-native";
+import Button from "../components/Button";
 
 export default function CartScreen() {
 
@@ -10,21 +11,21 @@ export default function CartScreen() {
     //     return featuredItems.map(item => ({...item, quantity: 1}));
     // })
 
-    const {items} = useCartContext();
-    
+    const { items, total, totalPrice } = useCartContext();
+
 
     return (
-        <View style={styles.container} > 
-        {/* {items.map(item => (
+        <View style={styles.container} >
+            {/* {items.map(item => (
             <CartItem key={item.meal.id} quantity = {item.quantity} {...item.meal} />
         ))}
         */}
 
-        <FlatList
-        data={items}
-        renderItem={({ item,index }) => <CartItem index={index} quantity={item.quantity} {...item.meal} /> }
-        keyExtractor={(item) => item.meal.id.toString()}
-        ListEmptyComponent={(
+            <FlatList
+                data={items}
+                renderItem={({ item, index }) => <CartItem index={index} quantity={item.quantity} {...item.meal} />}
+                keyExtractor={(item) => item.meal.id.toString()}
+                ListEmptyComponent={(
                     <View style={styles.emptyContainer}>
                         <Text style={styles.emptyIcon}>🛒</Text>
                         <Text style={styles.emptyTitle}>Your cart is empty</Text>
@@ -33,10 +34,27 @@ export default function CartScreen() {
                         </Text>
                     </View>
                 )}
-        />
+            />
 
-        
-            
+             <View style={styles.footer}>
+                <View style={styles.summaryRow}>
+                    <Text style={styles.summaryLabel}>Items ({total})</Text>
+                    {/* <Text style={styles.summaryValue}>${total}</Text> */}
+                </View>
+                <View style={styles.summaryRow}>
+                    <Text style={styles.totalLabel}>Total</Text>
+                    <Text style={styles.totalValue}>£{totalPrice.toFixed(2)}</Text>
+                </View>
+                <Button
+                    style={styles.checkoutButton}
+                    disabled={items.length === 0}
+                    
+                    title="Proceed to Checkout"
+                />
+            </View>
+
+      
+
         </View>
     )
 };
