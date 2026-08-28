@@ -5,13 +5,14 @@ import { useCartContext } from "../contexts/cart/CartContext"
 import { FlatList } from "react-native";
 import Button from "../components/Button";
 
-export default function CartScreen() {
+export default function CartScreen({ navigation,route }) {
 
     // const [cartItems,setCardItems] = useState(() => {
     //     return featuredItems.map(item => ({...item, quantity: 1}));
     // })
 
     const { items, total, totalPrice } = useCartContext();
+    const surrentRoute = route.name;
 
 
     return (
@@ -48,7 +49,7 @@ export default function CartScreen() {
                 <Button
                     style={styles.checkoutButton}
                     disabled={items.length === 0}
-                    
+                    onPress={() => navigation.navigate(route.name === 'CartModal' ? 'CheckoutModal' : 'Checkout')}
                     title="Proceed to Checkout"
                 />
             </View>

@@ -28,12 +28,13 @@ export default function TabNavigator() {
                             
                         }}
                     />
-            <Tabs.Screen name="CartStack" 
+            <Tabs.Screen name="CartTab" 
             component={CartNavigator} 
             options={{
 
                             tabBarIcon: ({color,size}) => <Ionicons name="cart"  size={size} color={color} />,
-                            headerShown: false
+                            headerShown: false,
+                            title: "Cart"
                         
                             
                             

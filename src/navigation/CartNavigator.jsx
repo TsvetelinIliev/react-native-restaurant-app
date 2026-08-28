@@ -1,6 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import CartScreen from "../screens/CartScreen";
-import CheckoutScreen from "../screens/CheckOutScreen";
+import CheckoutScreen from "../screens/CheckoutScreen";
+
+
+
 
 export default function CartNavigator() {
 
@@ -15,11 +18,12 @@ export default function CartNavigator() {
             options={{title: "Cart"}}
             />
 
-            <Stack.Screen
+
+           <Stack.Screen
             name="Checkout"
             component={CheckoutScreen}
             options={{ title: "Checkout"}} 
-            />
+            /> 
         </Stack.Navigator>
 
     )

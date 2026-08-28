@@ -62,6 +62,14 @@ export default function CartProvider({
         }));
     };
 
+    const clearCart = () => {
+        setState({
+            items: [],
+            total: 0,
+        })
+
+    }
+
 
     const removeItem = (index) => {
         setState((oldState) => {
@@ -88,6 +96,7 @@ export default function CartProvider({
         decreaseQuantity,
         increaseQuantity,
         removeItem,
+        clearCart,
         
     };
 
